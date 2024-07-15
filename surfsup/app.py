@@ -48,14 +48,16 @@ def home():
     return (f"""
         <html>
             <head>
-                <title>Welcome to Hawaii Weather API</title>
+                <title>Welcome to Hawaii Weather Climate API</title>
             </head>
             <body>
-                <h1>Welcome to Hawaii Weather API!</h1>
+                <h1>Welcome to Hawaii Weather Climate API!</h1>
                 <h2>Available Routes:</h2>
                 <ul>
-                    <li><a href="/api/v1.0/measurment">Measurements</a></li>
-                    <li><a href="/api/v1.0/station">Stations</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/api/v1.0/precipitation">Precipitation</a></li>
+                    <li><a href="/api/v1.0/station">Station</a></li>
+                    <li><a href="/api/v1.0/tobs">TOBS</a></li>
                 </ul>
             </body>
         </html>
