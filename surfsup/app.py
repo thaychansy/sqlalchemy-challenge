@@ -22,7 +22,6 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(autoload_with=engine)
 
-
 # View all of the classes that automap found
 Base.classes.keys()
 
