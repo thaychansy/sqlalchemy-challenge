@@ -38,7 +38,29 @@ session = Session(engine)
 #################################################
 app = Flask(__name__)
 
-
 #################################################
 # Flask Routes
 #################################################
+
+# Define the root route
+@app.route("/")
+def home():
+    return (f"""
+        <html>
+            <head>
+                <title>Welcome to Hawaii Weather API</title>
+            </head>
+            <body>
+                <h1>Welcome to Hawaii Weather API!</h1>
+                <h2>Available Routes:</h2>
+                <ul>
+                    <li><a href="/api/v1.0/measurment">Measurements</a></li>
+                    <li><a href="/api/v1.0/station">Stations</a></li>
+                </ul>
+            </body>
+        </html>
+    """)
+
+# Run the Flask app in debug mode
+if __name__ == '__main__':
+    app.run(debug=True)
