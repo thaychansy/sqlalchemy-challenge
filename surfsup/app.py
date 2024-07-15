@@ -14,7 +14,7 @@ from flask import Flask, jsonify
 # Create an engine that connects to the SQLite database
 #################################################
 #################################################
-engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+engine = create_engine("sqlite:///surfsup/resources/hawaii.sqlite")
 
 # reflect an existing database into a new model
 Base = automap_base()
