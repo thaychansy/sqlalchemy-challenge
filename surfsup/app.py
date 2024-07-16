@@ -83,7 +83,7 @@ def precipitation():  # sourcery skip: merge-dict-assign
     # Calculate the date one year from the last date in data set.
     one_year_ago = dt.datetime.strptime(latest_date, '%Y-%m-%d') - dt.timedelta(days=365)
 
-    # Save the query results. 
+    # Save the query results 
     results = session.query(Measurement.date, Measurement.prcp).\
         filter(Measurement.date >= one_year_ago).all()
     
