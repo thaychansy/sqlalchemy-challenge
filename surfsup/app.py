@@ -1,5 +1,6 @@
 # Import the dependencies.
 import numpy as np
+import pandas as pd
 import datetime as dt
 
 import sqlalchemy
@@ -38,6 +39,18 @@ Station = Base.classes.station
 
 # Create our session (link) from Python to the DB
 session = Session(engine)
+
+# Define function for passing latest date and past 12 months from the latest date
+def get_one_year_from_latest(session):
+    # sourcery skip: inline-immediately-returned-variable
+    
+    # Retrieve latest date
+    latest_date = session.query(func.max(Measurement.date)).scalar()
+
+    # Retrieve past 12 months of data from latest date
+    one_year_ago =  dt.datetime.strptime(latest_date, '%Y-%m-%d') - dt.timedelta(days=365)
+    
+    return one_year_ago
 
 #################################################
 # Flask Setup
@@ -79,11 +92,12 @@ def precipitation():  # sourcery skip: merge-dict-assign
     session = Session(engine)
     
     # Find the most recent date in the dataset
-    latest_date = session.query(func.max(Measurement.date)).scalar()
+    # latest_date = session.query(func.max(Measurement.date)).scalar()
 
     # Calculate the date one year from the last date in data set.
-    one_year_ago = dt.datetime.strptime(latest_date, '%Y-%m-%d') - dt.timedelta(days=365)
+    # one_year_ago = dt.datetime.strptime(latest_date, '%Y-%m-%d') - dt.timedelta(days=365)
 
+    one_year_ago = get_one_year_from_latest(session)
     # Save the query results 
     results = session.query(Measurement.date, Measurement.prcp).\
         filter(Measurement.date >= one_year_ago).all()
@@ -102,13 +116,13 @@ def precipitation():  # sourcery skip: merge-dict-assign
 
 # Define the stations route
 @app.route("/api/v1.0/stations")
-def stations():
+def stations():  # sourcery skip: merge-dict-assign
     
     # Create our session (link) from Python to the DB
     session = Session(engine)
     
     # Save the query results 
-    results = session.query(Station.id,
+    station_results = session.query(Station.id,
                             Station.station,
                             Station.name,
                             Station.latitude,
@@ -119,9 +133,9 @@ def stations():
 
     # Create a dictionary from the row data and append to a list
     all_station=[]
-    for id,station,name,latitude,longitude,elevation in results:
+    for id,station,name,latitude,longitude,elevation in station_results:
         station_dict={}
-        station_dict['Id']=id
+        station_dict['id']=id
         station_dict['station']=station
         station_dict['name']=name
         station_dict['latitude']=latitude
@@ -130,6 +144,42 @@ def stations():
         all_station.append(station_dict)
         
     return jsonify(all_station)
+
+# Define the stations route
+@app.route("/api/v1.0/tobs")
+def tobs():  # sourcery skip: merge-dict-assign
+
+    # Create our session (link) from Python to the DB
+    session = Session(engine) 
+    
+    one_year_ago = get_one_year_from_latest(session)
+    
+    # Using the most active station id
+    # Query the last 12 months of temperature observation data for most active station
+    active_station_results = session.query(Measurement.id,
+                                    Measurement.station,
+                                    Measurement.date,
+                                    Measurement.tobs)\
+                                .filter(Measurement.date >= one_year_ago)\
+                                .filter(Measurement.station == 'USC00519281').all()
+        
+    # Create a list of dictionaries from the query results
+    most_active_list = []
+    for row in active_station_results:
+        # Create a dictionary for each row
+        tobs_dict = {
+            'id': row.id,
+            'station': row.station,
+            'date': row.date,
+            'tobs': row.tobs
+        }
+        most_active_list.append(tobs_dict)
+    
+    #most_active_station = list(np.ravel(active_station_results))
+
+    session.close()
+        
+    return jsonify(most_active_list)
 
 # Run the Flask app in debug mode
 if __name__ == '__main__':
