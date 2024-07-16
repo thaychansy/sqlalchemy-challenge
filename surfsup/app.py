@@ -50,7 +50,7 @@ app = Flask(__name__)
 
 # Define the root route
 @app.route("/")
-def home():
+def home():  # sourcery skip: remove-redundant-fstring
     return (f"""
         <html>
             <head>
@@ -62,7 +62,7 @@ def home():
                 <ul>
                     <li><a href="/">home</a></li>
                     <li><a href="/api/v1.0/precipitation">precipitation</a></li>
-                    <li><a href="/api/v1.0/station">stations</a></li>
+                    <li><a href="/api/v1.0/stations">stations</a></li>
                     <li><a href="/api/v1.0/tobs">tobs</a></li>
                     <li><a href="/api/v1.0/start">start</a></li>
                     <li><a href="/api/v1.0/start_end">start/end</a></li>
@@ -73,7 +73,7 @@ def home():
 
 # Define the precipitation route
 @app.route("/api/v1.0/precipitation")
-def precipitation():
+def precipitation():  # sourcery skip: merge-dict-assign
     # Create our session (link) from Python to the DB
     session = Session(engine)
     
@@ -97,7 +97,23 @@ def precipitation():
         precipitation_dict["precipitation"] = precip
         precipitation_data.append(precipitation_dict)
     
-    return jsonify(precipitation_data)  
+    return jsonify(precipitation_data) 
+
+# Define the stations route
+@app.route("/api/v1.0/stations")
+def stations():
+    # Create our session (link) from Python to the DB
+    session = Session(engine) 
+    
+    # Query all stations
+    results = session.query(Measurement.station).all()
+    
+    session.close()
+    
+    # Convert list of tuples into normal list
+    station_results = list(np.ravel(results))
+    
+    return jsonify(station_results)
 
 # Run the Flask app in debug mode
 if __name__ == '__main__':
