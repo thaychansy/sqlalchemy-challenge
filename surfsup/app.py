@@ -74,6 +74,7 @@ def home():  # sourcery skip: remove-redundant-fstring
 # Define the precipitation route
 @app.route("/api/v1.0/precipitation")
 def precipitation():  # sourcery skip: merge-dict-assign
+    
     # Create our session (link) from Python to the DB
     session = Session(engine)
     
@@ -102,8 +103,10 @@ def precipitation():  # sourcery skip: merge-dict-assign
 # Define the stations route
 @app.route("/api/v1.0/stations")
 def stations():
+    
     # Create our session (link) from Python to the DB
     session = Session(engine)
+    
     # Save the query results 
     results = session.query(Station.id,
                             Station.station,
@@ -125,6 +128,7 @@ def stations():
         station_dict['longitude']=longitude
         station_dict['elevation']=elevation
         all_station.append(station_dict)
+        
     return jsonify(all_station)
 
 # Run the Flask app in debug mode
