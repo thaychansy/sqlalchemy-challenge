@@ -54,10 +54,10 @@ def home():  # sourcery skip: remove-redundant-fstring
     return (f"""
         <html>
             <head>
-                <title>Welcome to The Hawaii Weather Climate API</title>
+                <title>Welcome to The Hawaii Weather API & Climate APP</title>
             </head>
             <body>
-                <h1>Welcome to The Hawaii Weather Climate API!</h1>
+                <h1>Welcome to The Hawaii Weather API & Climate APP!</h1>
                 <h2>Available Routes:</h2>
                 <ul>
                     <li><a href="/">home</a></li>
@@ -103,17 +103,29 @@ def precipitation():  # sourcery skip: merge-dict-assign
 @app.route("/api/v1.0/stations")
 def stations():
     # Create our session (link) from Python to the DB
-    session = Session(engine) 
-    
-    # Query all stations
-    results = session.query(Measurement.station).all()
+    session = Session(engine)
+    # Save the query results 
+    results = session.query(Station.id,
+                            Station.station,
+                            Station.name,
+                            Station.latitude,
+                            Station.longitude,
+                            Station.elevation).all()
     
     session.close()
-    
-    # Convert list of tuples into normal list
-    station_results = list(np.ravel(results))
-    
-    return jsonify(station_results)
+
+    # Create a dictionary from the row data and append to a list
+    all_station=[]
+    for id,station,name,latitude,longitude,elevation in results:
+        station_dict={}
+        station_dict['Id']=id
+        station_dict['station']=station
+        station_dict['name']=name
+        station_dict['latitude']=latitude
+        station_dict['longitude']=longitude
+        station_dict['elevation']=elevation
+        all_station.append(station_dict)
+    return jsonify(all_station)
 
 # Run the Flask app in debug mode
 if __name__ == '__main__':
