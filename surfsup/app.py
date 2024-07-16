@@ -93,8 +93,8 @@ def precipitation():  # sourcery skip: merge-dict-assign
     precipitation_data = []
     for date, precip in results:
         precipitation_dict = {}
-        precipitation_dict["date"] = date
-        precipitation_dict["precipitation"] = precip
+        precipitation_dict['date'] = date
+        precipitation_dict['precipitation'] = precip
         precipitation_data.append(precipitation_dict)
     
     return jsonify(precipitation_data) 
