@@ -91,14 +91,10 @@ def precipitation():  # sourcery skip: merge-dict-assign
     
     # Create our session (link) from Python to the DB
     session = Session(engine)
-    
-    # Find the most recent date in the dataset
-    # latest_date = session.query(func.max(Measurement.date)).scalar()
 
-    # Calculate the date one year from the last date in data set.
-    # one_year_ago = dt.datetime.strptime(latest_date, '%Y-%m-%d') - dt.timedelta(days=365)
-
+    # Retrieves a date one year prior to the most recent date from a custom function
     one_year_ago = get_one_year_from_latest(session)
+
     # Save the query results 
     results = session.query(Measurement.date, Measurement.prcp).\
         filter(Measurement.date >= one_year_ago).all()
@@ -199,7 +195,7 @@ def get_t_start(start):
       tobs_data.append(tobs_dict)
 
   session.close()
-  
+
   return jsonify(tobs_data)
 
 # Run the Flask app in debug mode
