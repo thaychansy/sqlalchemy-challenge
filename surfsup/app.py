@@ -1,6 +1,7 @@
 # Import the dependencies.
 import numpy as np
 import pandas as pd
+from datetime import date
 import datetime as dt
 
 import sqlalchemy
@@ -18,10 +19,10 @@ from flask import Flask, jsonify
 #################################################
 #################################################
 
-# Uncomment to deploy Flask on VS CODE
+# Uncomment to deploy Flask in VS CODE
 engine = create_engine("sqlite:///Surfsup/Resources/hawaii.sqlite")
 
-# Uncomment deploy Flask on Terminal
+# Uncomment to deploy Flask in Terminal
 # engine = create_engine("sqlite:///../SurfsUp/Resources/hawaii.sqlite")
 
 # reflect an existing database into a new model
@@ -77,7 +78,7 @@ def home():  # sourcery skip: remove-redundant-fstring
                     <li><a href="/api/v1.0/precipitation">precipitation</a></li>
                     <li><a href="/api/v1.0/stations">stations</a></li>
                     <li><a href="/api/v1.0/tobs">tobs</a></li>
-                    <li><a href="/api/v1.0/start">start</a></li>
+                    <li><a href="/api/v1.0/start/<start>">start</a></li>
                     <li><a href="/api/v1.0/start_end">start/end</a></li>
                 </ul>
             </body>
@@ -104,14 +105,9 @@ def precipitation():  # sourcery skip: merge-dict-assign
     
     session.close()
     
-    # Create a dictionary from the row data and append to a list
-    precipitation_data = []
-    for date, precip in results:
-        precipitation_dict = {}
-        precipitation_dict['date'] = date
-        precipitation_dict['precipitation'] = precip
-        precipitation_data.append(precipitation_dict)
-    
+     # Convert query results to dictionary with the date as the key and the value as the precipitation
+    precipitation_data = {date[0]: date[1] for date in results}
+   
     return jsonify(precipitation_data) 
 
 # Define the stations route
@@ -156,8 +152,7 @@ def tobs():  # sourcery skip: merge-dict-assign
     
     # Using the most active station id
     # Query the last 12 months of temperature observation data for most active station
-    active_station_results = session.query(Measurement.id,
-                                    Measurement.station,
+    active_station_results = session.query(Measurement.station,
                                     Measurement.date,
                                     Measurement.tobs)\
                                 .filter(Measurement.date >= one_year_ago)\
@@ -168,18 +163,44 @@ def tobs():  # sourcery skip: merge-dict-assign
     for row in active_station_results:
         # Create a dictionary for each row
         tobs_dict = {
-            'id': row.id,
             'station': row.station,
             'date': row.date,
             'tobs': row.tobs
         }
         most_active_list.append(tobs_dict)
-    
-    #most_active_station = list(np.ravel(active_station_results))
 
     session.close()
         
     return jsonify(most_active_list)
+
+# Define the start route
+@app.route("/api/v1.0/start/<start>")
+def get_t_start(start):
+
+  # Create session
+  session = Session(engine)
+  
+  most_recent_date = session.query(func.max(Measurement.date)).first()
+  
+  # Convert start date to datetime object with proper format validation
+  try:
+      start_date = dt.datetime.strptime(most_recent_date[0], "%Y-%m-%d").date()
+  except ValueError:
+      return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+
+  # Build query
+  results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+              filter(Measurement.date >= start_date).all()
+
+  # Convert results to list of dictionaries
+  tobs_data = []
+  for min_temp, avg_temp, max_temp in results:
+      tobs_dict = {"Min_Temp": min_temp, "Avg_Temp": avg_temp, "Max_Temp": max_temp}
+      tobs_data.append(tobs_dict)
+
+  session.close()
+  
+  return jsonify(tobs_data)
 
 # Run the Flask app in debug mode
 if __name__ == '__main__':
