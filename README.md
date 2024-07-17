@@ -70,21 +70,33 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - List all the available routes.
 
+<img width="571" alt="image" src="https://github.com/user-attachments/assets/f445945b-bdda-4d33-8355-6984ba446e6c">
+
+
 2. `/api/v1.0/precipitation`
 
 - Convert the query results from your precipitation analysis (i.e. retrieve only the last 12 months of data) to a dictionary using date as the key and prcp as the value.
 
 - Return the JSON representation of your dictionary.
 
+<img width="391" alt="image" src="https://github.com/user-attachments/assets/8d7ef6aa-2a3d-44c8-a923-39abbdec1b77">
+
+
 3. `/api/v1.0/stations`
 
 - Return a JSON list of stations from the dataset.
+
+<img width="391" alt="image" src="https://github.com/user-attachments/assets/399eb16a-6858-454c-97f1-b4007a90f516">
+
 
 4. `/api/v1.0/tobs`
 
 - Query the dates and temperature observations of the most-active station for the previous year of data.
 
 - Return a JSON list of temperature observations for the previous year.
+
+<img width="343" alt="image" src="https://github.com/user-attachments/assets/280b5e48-c8d2-4c26-9be9-dfb3e1d2b0dd">
+
 
 5. `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
 
@@ -93,7 +105,13 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 - For a specified start, calculate TMIN, TAVG, and TMAX for all the dates greater than or equal to the start date.
 
 - For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
-  
+
+<img width="352" alt="image" src="https://github.com/user-attachments/assets/30b865fd-c6ad-49b2-ab47-54df55a88050">
+
+
+<img width="407" alt="image" src="https://github.com/user-attachments/assets/d4e7be2a-2263-49f5-8953-8db980cbc99b">
+
+
 <!-- BUILT-WITH-FLASK-PYTHON-SQLITE-SQL-ALCHEMY -->
 ## Built with FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework 
 
