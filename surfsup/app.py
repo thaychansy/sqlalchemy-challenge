@@ -41,10 +41,17 @@ Station = Base.classes.station
 # Create our session (link) from Python to the DB
 session = Session(engine)
 
+# Define function for passing most recent date 
+def get_most_recent_date(session):
+
+    # Retrieve latest date
+    most_recent_date = session.query(func.max(Measurement.date)).first()
+
+    return most_recent_date
+
 # Define function for passing latest date and past 12 months from the latest date
 def get_one_year_from_latest(session):
-    # sourcery skip: inline-immediately-returned-variable
-    
+
     # Retrieve latest date
     latest_date = session.query(func.max(Measurement.date)).scalar()
 
@@ -52,6 +59,7 @@ def get_one_year_from_latest(session):
     one_year_ago =  dt.datetime.strptime(latest_date, '%Y-%m-%d') - dt.timedelta(days=365)
     
     return one_year_ago
+
 
 #################################################
 # Flask Setup
@@ -79,7 +87,7 @@ def home():  # sourcery skip: remove-redundant-fstring
                     <li><a href="/api/v1.0/stations">stations</a></li>
                     <li><a href="/api/v1.0/tobs">tobs</a></li>
                     <li><a href="/api/v1.0/start/<start>">start</a></li>
-                    <li><a href="/api/v1.0/start_end">start/end</a></li>
+                    <li><a href="/api/v1.0/start_end/<start_end>">start/end</a></li>
                 </ul>
             </body>
         </html>
@@ -171,27 +179,64 @@ def tobs():  # sourcery skip: merge-dict-assign
 
 # Define the start route
 @app.route("/api/v1.0/start/<start>")
-def get_t_start(start):
+def get_start(start):
 
   # Create session
   session = Session(engine)
   
-  most_recent_date = session.query(func.max(Measurement.date)).first()
+  # most_recent_date = session.query(func.max(Measurement.date)).first()
+
+  most_recent = get_most_recent_date(session)
   
   # Convert start date to datetime object with proper format validation
   try:
-      start_date = dt.datetime.strptime(most_recent_date[0], "%Y-%m-%d").date()
+      start = dt.datetime.strptime(most_recent[0], "%Y-%m-%d").date()
   except ValueError:
       return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
 
   # Build query
   results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-              filter(Measurement.date >= start_date).all()
+              filter(Measurement.date >= start).all()
 
   # Convert results to list of dictionaries
   tobs_data = []
   for min_temp, avg_temp, max_temp in results:
-      tobs_dict = {"Min_Temp": min_temp, "Avg_Temp": avg_temp, "Max_Temp": max_temp}
+      tobs_dict = {"Min_Temp": min_temp, 
+                   "Avg_Temp": avg_temp, 
+                   "Max_Temp": max_temp}
+      tobs_data.append(tobs_dict)
+
+  session.close()
+
+  return jsonify(tobs_data)
+
+# Define the start route
+@app.route("/api/v1.0/star_end/<start>/<end>")
+def get_start_end(start, end):
+
+  # Create session
+  session = Session(engine)
+  
+  # most_recent_date = session.query(func.max(Measurement.date)).first()
+
+  most_recent = get_most_recent_date(session)
+  
+  # Convert start date to datetime object with proper format validation
+  try:
+      start = dt.datetime.strptime(most_recent[0], "%Y-%m-%d").date()
+  except ValueError:
+      return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+
+  # Build query
+  results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+              filter(Measurement.date >= start).all()
+
+  # Convert results to list of dictionaries
+  tobs_data = []
+  for min_temp, avg_temp, max_temp in results:
+      tobs_dict = {"Min_Temp": min_temp, 
+                   "Avg_Temp": avg_temp, 
+                   "Max_Temp": max_temp}
       tobs_data.append(tobs_dict)
 
   session.close()
