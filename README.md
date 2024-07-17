@@ -39,8 +39,10 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
 3. Select only the "date" and "prcp" values.
 4. Load the query results into a Pandas DataFrame. Explicitly set the column names.
 5. Sort the DataFrame values by "date".
-6. Plot the results by using the DataFrame `plot` method, as the following image shows: 
-7. Use Pandas to print the summary statistics for the precipitation data.
+6. Plot the results by using the DataFrame `plot` method, as the following image shows:
+   <img width="426" alt="image" src="https://github.com/user-attachments/assets/9a885b0d-b9e8-44aa-b38f-58032dcd1e59">
+
+8. Use Pandas to print the summary statistics for the precipitation data.
 
 ### Station Analysis
 
@@ -52,6 +54,8 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
    - Filter by the station that has the greatest number of observations.
    - Query the previous 12 months of TOBS data for that station.
    - Plot the results as a histogram with `bins=12`, as the following image shows:
+     <img width="407" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b">
+
 5. Close your session.
 
 ## Part 2: Design Your Climate App
