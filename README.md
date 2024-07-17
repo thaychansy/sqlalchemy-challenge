@@ -9,14 +9,14 @@
 Table of Contents
 <ol>
 <li><a href="#about-the-project">About The Project</a></li>
-<li><a href="#built">Build With FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework</a></li>
+<li><a href="#built-with-flask,-python,-sqlite,-and-sqlalchemy-framework">Built With FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework</a></li>
 <li><a href="#contributing">Contributing (UC Berkeley Bootcamp Students Only) </a></li>
 <li><a href="#contact">Contact</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 
 
-<!-- ABOUT -->
+<!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
