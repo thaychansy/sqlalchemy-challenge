@@ -9,7 +9,7 @@
 Table of Contents
 <ol>
 <li><a href="#about-the-project">About The Project</a></li>
-<li><a href="#built-with-flask-pytHon-sqlite-sql-alchemy">Build With FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework</a></li>
+<li><a href="#built">Build With FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework</a></li>
 <li><a href="#contributing">Contributing (UC Berkeley Bootcamp Students Only) </a></li>
 <li><a href="#contact">Contact</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -112,7 +112,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 <img width="407" alt="image" src="https://github.com/user-attachments/assets/d4e7be2a-2263-49f5-8953-8db980cbc99b">
 
 
-<!-- BUILT WITH FLASK PYTHON SQLITE SQL ALCHEMY -->
+<!-- BUILT -->
 ## Built with FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework 
 
 - Flask: A lightweight Python web framework that simplifies building web applications.
