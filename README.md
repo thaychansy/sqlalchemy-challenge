@@ -115,7 +115,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
   
 <!-- BUILT -->
 
-## Built with FLASK, PYTHON, SQLITE, and SQLALCHEMY Framework 
+## Built with FLASK and SQLALCHEMY Framework 
 
 - Flask: A lightweight Python web framework that simplifies building web applications.
 Provides tools for handling routes, requests, responses, and templating.
