@@ -54,7 +54,9 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
    - Filter by the station that has the greatest number of observations.
    - Query the previous 12 months of TOBS data for that station.
    - Plot the results as a histogram with `bins=12`, as the following image shows:
-     <img width="407" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b">
+
+
+<img width="407" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b">
 
 5. Close your session.
 
