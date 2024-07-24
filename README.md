@@ -40,7 +40,7 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
 4. Load the query results into a Pandas DataFrame. Explicitly set the column names.
 5. Sort the DataFrame values by "date".
 6. Plot the results by using the DataFrame `plot` method, as the following image shows:
-   <img width="426" alt="image" src="https://github.com/user-attachments/assets/9a885b0d-b9e8-44aa-b38f-58032dcd1e59">
+   <img width="942" alt="image" src="https://github.com/user-attachments/assets/9a885b0d-b9e8-44aa-b38f-58032dcd1e59">
 
 8. Use Pandas to print the summary statistics for the precipitation data.
 
@@ -56,7 +56,7 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
    - Plot the results as a histogram with `bins=12`, as the following image shows:
 
 
-<img width="407" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b">
 
 5. Close your session.
 
@@ -70,7 +70,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - List all the available routes.
 
-<img width="571" alt="image" src="https://github.com/user-attachments/assets/f445945b-bdda-4d33-8355-6984ba446e6c">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/f445945b-bdda-4d33-8355-6984ba446e6c">
 
 
 2. `/api/v1.0/precipitation`
@@ -79,7 +79,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - Return the JSON representation of your dictionary.
 
-<img width="391" alt="image" src="https://github.com/user-attachments/assets/8d7ef6aa-2a3d-44c8-a923-39abbdec1b77">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/8d7ef6aa-2a3d-44c8-a923-39abbdec1b77">
 
 
 3. `/api/v1.0/stations`
@@ -95,7 +95,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - Return a JSON list of temperature observations for the previous year.
 
-<img width="343" alt="image" src="https://github.com/user-attachments/assets/280b5e48-c8d2-4c26-9be9-dfb3e1d2b0dd">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/280b5e48-c8d2-4c26-9be9-dfb3e1d2b0dd">
 
 
 5. `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
