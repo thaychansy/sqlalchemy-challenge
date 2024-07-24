@@ -86,7 +86,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - Return a JSON list of stations from the dataset.
 
-<img width="391" alt="image" src="https://github.com/user-attachments/assets/399eb16a-6858-454c-97f1-b4007a90f516">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/399eb16a-6858-454c-97f1-b4007a90f516">
 
 
 4. `/api/v1.0/tobs`
@@ -106,10 +106,10 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
 
-<img width="352" alt="image" src="https://github.com/user-attachments/assets/30b865fd-c6ad-49b2-ab47-54df55a88050">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/30b865fd-c6ad-49b2-ab47-54df55a88050">
 
 
-<img width="407" alt="image" src="https://github.com/user-attachments/assets/d4e7be2a-2263-49f5-8953-8db980cbc99b">
+<img width="942" alt="image" src="https://github.com/user-attachments/assets/d4e7be2a-2263-49f5-8953-8db980cbc99b">
 
 <p  align="right">(<a  href="#readme-top">back to top</a>)</p>
   
