@@ -40,7 +40,7 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
 4. Load the query results into a Pandas DataFrame. Explicitly set the column names.
 5. Sort the DataFrame values by "date".
 6. Plot the results by using the DataFrame `plot` method, as the following image shows:
-   <img width="942" alt="image" src="https://github.com/user-attachments/assets/9a885b0d-b9e8-44aa-b38f-58032dcd1e59">
+  <kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/9a885b0d-b9e8-44aa-b38f-58032dcd1e59"> </kbd>
 
 8. Use Pandas to print the summary statistics for the precipitation data.
 
@@ -56,7 +56,7 @@ Congratulations! You've decided to treat yourself to a long holiday vacation in 
    - Plot the results as a histogram with `bins=12`, as the following image shows:
 
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/9b815ec1-ebc6-43bc-8caf-d04d5d62a68b"> </kbd>
 
 5. Close your session.
 
@@ -70,7 +70,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - List all the available routes.
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/f445945b-bdda-4d33-8355-6984ba446e6c">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/f445945b-bdda-4d33-8355-6984ba446e6c"> </kbd>
 
 
 2. `/api/v1.0/precipitation`
@@ -79,14 +79,14 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - Return the JSON representation of your dictionary.
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/8d7ef6aa-2a3d-44c8-a923-39abbdec1b77">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/8d7ef6aa-2a3d-44c8-a923-39abbdec1b77"> </kbd>
 
 
 3. `/api/v1.0/stations`
 
 - Return a JSON list of stations from the dataset.
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/399eb16a-6858-454c-97f1-b4007a90f516">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/399eb16a-6858-454c-97f1-b4007a90f516"> </kbd>
 
 
 4. `/api/v1.0/tobs`
@@ -95,7 +95,7 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - Return a JSON list of temperature observations for the previous year.
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/280b5e48-c8d2-4c26-9be9-dfb3e1d2b0dd">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/280b5e48-c8d2-4c26-9be9-dfb3e1d2b0dd"> </kbd>
 
 
 5. `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
@@ -106,10 +106,10 @@ Now that you’ve completed your initial analysis, you’ll design a Flask API b
 
 - For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/30b865fd-c6ad-49b2-ab47-54df55a88050">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/30b865fd-c6ad-49b2-ab47-54df55a88050"> </kbd>
 
 
-<img width="942" alt="image" src="https://github.com/user-attachments/assets/d4e7be2a-2263-49f5-8953-8db980cbc99b">
+<kbd> <img width="942" alt="image" src="https://github.com/user-attachments/assets/d4e7be2a-2263-49f5-8953-8db980cbc99b"> </kbd>
 
 <p  align="right">(<a  href="#readme-top">back to top</a>)</p>
   
